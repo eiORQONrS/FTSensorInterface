@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Data Stream</title>
+  <link rel="stylesheet" href="styles_ft.css?v=20260305v3" />
+</head>
+<body>
+  <header>
+    <div class="brand">Live Data Stream</div>
+
+    <button id="cfgBtn" class="ctlBtn cfgBtn" type="button">Configuration</button>
+
+    <div id="chanBar" class="chanBar" aria-label="Channel selection">
+      <button class="ctlBtn chanBtn" data-ch="Fx" type="button">Fx</button>
+      <button class="ctlBtn chanBtn" data-ch="Fy" type="button">Fy</button>
+      <button class="ctlBtn chanBtn" data-ch="Fz" type="button">Fz</button>
+      <button class="ctlBtn chanBtn" data-ch="Tx" type="button">Tx</button>
+      <button class="ctlBtn chanBtn" data-ch="Ty" type="button">Ty</button>
+      <button class="ctlBtn chanBtn" data-ch="Tz" type="button">Tz</button>
+    </div>
+
+    <!-- this can grow, but must not push right-side controls -->
+    <div class="pill fixedNums" id="valLine">
+      Fy: +00.000  Fx: +00.000  Fz: +00.000
+    </div>
+
+    <!-- right side fixed cluster -->
+    <div class="rightCluster">
+      <div class="pill rxPill" id="rxPill">-- Hz</div>
+
+      <button id="recBtn" class="ctlBtn recBtn" type="button">
+        <span class="dot recDot" aria-hidden="true"></span>
+        <span class="label">Record</span>
+      </button>
+
+      <button id="dirBtn" class="ctlBtn dirBtn" type="button" title="Choose a folder">
+        <span class="label">Select folder</span>
+      </button>
+
+      <div class="pill wsPill">
+        <span id="wsDot" class="dot"></span>
+        <span id="wsText" class="label">Disconnected</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="row" id="plotsRow">
+    <div class="panel" data-panel="Fz">
+      <div class="plotRow">
+        <div class="plotlabel">Fz</div>
+        <div class="plotWrap">
+          <canvas id="fzCanvas" class="plot small"></canvas>
+          <div class="ylabelsAbs" id="fzY"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="Fx">
+      <div class="plotRow">
+        <div class="plotlabel">Fx</div>
+        <div class="plotWrap">
+          <canvas id="fxCanvas" class="plot small"></canvas>
+          <div class="ylabelsAbs" id="fxY"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="Fy">
+      <div class="plotRow">
+        <div class="plotlabel">Fy</div>
+        <div class="plotWrap">
+          <canvas id="fyCanvas" class="plot small"></canvas>
+          <div class="ylabelsAbs" id="fyY"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="Tx">
+      <div class="plotRow">
+        <div class="plotlabel">Tx</div>
+        <div class="plotWrap">
+          <canvas id="txCanvas" class="plot small"></canvas>
+          <div class="ylabelsAbs" id="txY"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="Ty">
+      <div class="plotRow">
+        <div class="plotlabel">Ty</div>
+        <div class="plotWrap">
+          <canvas id="tyCanvas" class="plot small"></canvas>
+          <div class="ylabelsAbs" id="tyY"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" data-panel="Tz">
+      <div class="plotRow">
+        <div class="plotlabel">Tz</div>
+        <div class="plotWrap">
+          <canvas id="tzCanvas" class="plot small"></canvas>
+          <div class="ylabelsAbs" id="tzY"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal Configuration Modal -->
+  <div id="cfgModal" class="modal" aria-hidden="true">
+    <div class="modalBackdrop" id="cfgBackdrop"></div>
+
+    <div class="modalCard" role="dialog" aria-modal="true" aria-label="Configuration">
+      <div class="modalHeader">
+        <div class="modalTitle">Configuration</div>
+        <div class="modalHeaderActions">
+          <button id="cfgResetBtn" class="ctlBtn dangerBtn" type="button">Reset</button>
+          <button id="cfgApplyBtn" class="ctlBtn primaryBtn" type="button">Apply</button>
+        </div>
+      </div>
+
+      <div class="modalBody">
+        <div class="cfgGridHead">
+          <div>Channel</div><div>Min</div><div>Max</div><div>Step</div>
+        </div>
+        <div id="cfgGrid" class="cfgGrid"></div>
+
+        <div class="cfgError" id="cfgError" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app_ft.js?v=20260305v3"></script>
+</body>
+</html>
