@@ -18,7 +18,7 @@ WS_HOST       = "127.0.0.1"
 WS_PORT       = 8765
 
 # Wait WS port LISTENING (does NOT connect), 0 to skip waiting
-WAIT_WS_LISTEN_SEC = 6.0
+WAIT_WS_LISTEN_SEC = 2.0
 
 ISOLATE_CHROME= True
 LOG_RING_SIZE = 300
@@ -27,7 +27,7 @@ LOG_RING_SIZE = 300
 AUTO_EXIT_ON_BROWSER_CLOSE = False
 
 # NEW: auto-exit if no websocket clients for N seconds (based on FTSensor stdout "clients=0")
-NO_CLIENT_EXIT_SEC = 5.0   # set 0 to disable
+NO_CLIENT_EXIT_SEC = 3.0   # set 0 to disable
 # ==========================================================
 
 def ts(): return time.strftime("%H:%M:%S")

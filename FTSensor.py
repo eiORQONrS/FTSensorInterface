@@ -69,7 +69,7 @@ def setup_daq() -> nidaqmx.Task:
 
 def calibrate_offset_1s(task: nidaqmx.Task) -> np.ndarray:
     """1 s mean offset for Fx..Tz. Robust to empty reads/timeouts."""
-    print("⌛ Calibrating DAQ offset (1 s)…")
+    print("Calibrating DAQ offset (1 s)…")
     samples: List[np.ndarray] = []
     t0 = time.perf_counter()
 
@@ -88,7 +88,7 @@ def calibrate_offset_1s(task: nidaqmx.Task) -> np.ndarray:
         raise RuntimeError("DAQ calibration failed: no samples read.")
 
     offset6 = np.mean(np.vstack(samples), axis=0)
-    print(f"✅ Offset (Fx..Tz): {offset6}")
+    print(f"Offset (Fx..Tz): {offset6}")
     return offset6
 
 
@@ -191,11 +191,11 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n🛑 Stopping…")
+        print("\nStopping…")
     finally:
         try:
             if daq_task is not None:
                 daq_task.close()
         except Exception:
             pass
-        print("✅ Clean exit.")
+        print("Clean exit.")
